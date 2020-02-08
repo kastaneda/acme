@@ -1,0 +1,9 @@
+#
+# Configuration file /var/www/acme/domains.mk (example)
+#
+
+# Domains to handle
+DOMAINS = \
+    example.com \
+    example.net \
+    example.org
