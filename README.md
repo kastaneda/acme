@@ -11,4 +11,17 @@ It runs well from unprivileged user (I create special user `acme` for this).
 
 Also there is sample configuration files and virtual host template for Apache2.
 
+
+Multiple webservers
+-------------------
+
+TODO: add description.
+
+```apache
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule (.*) - [L]
+RewriteRule (.*) http://your-acme-host/.well-known/acme-challenge/$1 [L]
+```
+
 [1]: https://github.com/diafygi/acme-tiny
