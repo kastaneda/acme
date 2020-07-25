@@ -4,10 +4,11 @@
 #
 # Usage example:
 #   cd /etc/apache2/sites-available
+#
 #   HOSTNAME=example.com ./vhost_tpl.sh > example.com.conf
 #   HOSTNAME=example.net ./vhost_tpl.sh > example.net.conf
-#   HOSTNAME=example.org ./vhost_tpl.sh > example.org.conf
-#   a2ensite example.com.conf example.net.conf example.org.conf
+#
+#   a2ensite example.com.conf example.net.conf
 #   service apache2 reload
 #
 
@@ -21,7 +22,7 @@ cat - <<VIRTUAL_HOST_TEMPLATE
     ServerAdmin $SERVER_ADMIN
 
     ServerName $HOSTNAME
-    ServerAlias www.$HOSTNAME
+    # ServerAlias www.$HOSTNAME
 
     DocumentRoot /var/www/$HOSTNAME
     <Directory /var/www/$HOSTNAME>
