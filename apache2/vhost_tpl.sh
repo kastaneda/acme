@@ -38,7 +38,7 @@ cat - <<VIRTUAL_HOST_TEMPLATE
 </VirtualHost>
 
 <IfModule ssl_module>
-<IfFile "/var/www/acme/$HOSTNAME/signed.crt">
+<IfFile "/var/www/acme/$HOSTNAME/certificate.pem">
 <VirtualHost *:443>
     ServerAdmin $SERVER_ADMIN
 
