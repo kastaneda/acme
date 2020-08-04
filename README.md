@@ -14,8 +14,8 @@ It runs well from unprivileged user. I create special user `acme` for it.
 Also there is sample configuration files and virtual host template for Apache2.
 
 
-Folder structure convetion
---------------------------
+Folder structure convention
+---------------------------
 
  - `/var/www/acme-challenge`: folder to put challenge files; must be writable for `acme` user
  - `/var/www/acme`: homedir of user `acme` (recommended mode is 0700)
