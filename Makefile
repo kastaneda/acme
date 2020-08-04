@@ -25,8 +25,8 @@ all: $(DOMAIN_CERTIFICATES) $(DOMAIN_FULLCHAINS) lets-encrypt-x3-cross-signed.pe
 lets-encrypt-x3-cross-signed.pem:
 	wget https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem
 
-lets-encrypt-x4-cross-signed.pem.txt:
-	wget https://letsencrypt.org/certs/lets-encrypt-x4-cross-signed.pem.txt
+lets-encrypt-x4-cross-signed.pem:
+	wget https://letsencrypt.org/certs/lets-encrypt-x4-cross-signed.pem
 
 # Generate the account key
 account_key.pem:
