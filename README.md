@@ -55,11 +55,8 @@ chgrp acme /var/www/acme-challenge
 
 ```sh
 su acme -c "cd; wget https://raw.githubusercontent.com/kastaneda/acme/master/Makefile"
-```
 
-or, if you prefer to clone this Git repo:
-
-```sh
+# or, if you prefer to clone this Git repo:
 su acme -c "cd; git init .; git remote add -t \* -f origin https://github.com/kastaneda/acme.git; git checkout master"
 ```
 
