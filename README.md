@@ -30,10 +30,11 @@ Folder structure convention
 How to use it
 -------------
 
-0. Prerequisites:
-    - you have web server, like Apache2;
-    - you have domain, like `example.com`;
-    - your web server have real IP
+Prerequisites:
+
+ - you have web server, like Apache2;
+ - you have domain, like `example.com`;
+ - your web server have real IP.
 
 1. Create user `acme` with homedir `/var/www/acme`
 
@@ -70,6 +71,8 @@ su acme -c "cd; git init .; git remote add -t \* -f origin https://github.com/ka
 su acme -c "cd; make"
 ```
 
+Note: to use new certificates, you should reload your webserver.
+
 
 Certificate expiration
 ----------------------
@@ -78,8 +81,6 @@ Let's Encrypt certificates should be updated frequently.
 
 There is special target `make expire`, it it finds certificates older than 30 days and put their timestamp to far past.
 Such certificates would be renewed on next `make` run.
-
-Note: to use new certificates, you should reload your webserver.
 
 
 Multiple webservers
