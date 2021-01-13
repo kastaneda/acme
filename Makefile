@@ -17,7 +17,7 @@ DOMAIN_FULLCHAINS = $(patsubst %,%/fullchain.pem,$(DOMAINS))
 
 # Main target: sign/renew domain certificates and do everything else
 # If some cerificates is older than their CSRs, then it will be renewed
-all: $(DOMAIN_CERTIFICATES) $(DOMAIN_FULLCHAINS) lets-encrypt-x3-cross-signed.pem
+all: $(DOMAIN_CERTIFICATES) $(DOMAIN_FULLCHAINS) lets-encrypt-r3-cross-signed.pem
 .PHONY: all
 
 # Download Let's Encrypt intermediate certificates
@@ -27,6 +27,9 @@ lets-encrypt-x3-cross-signed.pem:
 
 lets-encrypt-x4-cross-signed.pem:
 	wget https://letsencrypt.org/certs/lets-encrypt-x4-cross-signed.pem
+
+lets-encrypt-r3-cross-signed.pem:
+	wget https://letsencrypt.org/certs/lets-encrypt-r3-cross-signed.pem
 
 # Generate the account key
 account_key.pem:
@@ -46,7 +49,7 @@ account_key.pem:
 	acme-tiny --account-key account_key.pem --csr $*/csr.pem --acme-dir $(ACMEDIR) > $@ || rm $@
 
 # Join signed certificate and intermediate certificates to full chain
-%/fullchain.pem: %/certificate.pem lets-encrypt-x3-cross-signed.pem
+%/fullchain.pem: %/certificate.pem lets-encrypt-r3-cross-signed.pem
 	cat $^ > $@ || rm $@
 
 # Find certificates older than 30 days (-mtime +30) and mark them to renew

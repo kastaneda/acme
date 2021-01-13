@@ -55,7 +55,7 @@ cat - <<VIRTUAL_HOST_TEMPLATE
     SSLEngine                       on
     SSLCertificateFile              /var/www/acme/$HOSTNAME/certificate.pem
     SSLCertificateKeyFile           /var/www/acme/$HOSTNAME/private_key.pem
-    SSLCertificateChainFile         /var/www/acme/lets-encrypt-x3-cross-signed.pem
+    SSLCertificateChainFile         /var/www/acme/lets-encrypt-r3-cross-signed.pem
 
     ErrorLog \${APACHE_LOG_DIR}/$HOSTNAME-ssl-error.log
     CustomLog \${APACHE_LOG_DIR}/$HOSTNAME-ssl-access.log combined
