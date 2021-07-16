@@ -22,14 +22,18 @@ all: $(DOMAIN_CERTIFICATES) $(DOMAIN_FULLCHAINS) lets-encrypt-r3-cross-signed.pe
 
 # Download Let's Encrypt intermediate certificates
 # See https://letsencrypt.org/certificates/
-lets-encrypt-x3-cross-signed.pem:
-	wget https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem
 
-lets-encrypt-x4-cross-signed.pem:
-	wget https://letsencrypt.org/certs/lets-encrypt-x4-cross-signed.pem
+#lets-encrypt-x3-cross-signed.pem:
+#	wget https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem
+
+#lets-encrypt-x4-cross-signed.pem:
+#	wget https://letsencrypt.org/certs/lets-encrypt-x4-cross-signed.pem
 
 lets-encrypt-r3-cross-signed.pem:
 	wget https://letsencrypt.org/certs/lets-encrypt-r3-cross-signed.pem
+
+lets-encrypt-r4-cross-signed.pem:
+	wget https://letsencrypt.org/certs/lets-encrypt-r4-cross-signed.pem
 
 # Generate the account key
 account_key.pem:
