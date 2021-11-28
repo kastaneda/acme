@@ -23,17 +23,8 @@ all: $(DOMAIN_CERTIFICATES) $(DOMAIN_FULLCHAINS) lets-encrypt-r3-cross-signed.pe
 # Download Let's Encrypt intermediate certificates
 # See https://letsencrypt.org/certificates/
 
-#lets-encrypt-x3-cross-signed.pem:
-#	wget https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem
-
-#lets-encrypt-x4-cross-signed.pem:
-#	wget https://letsencrypt.org/certs/lets-encrypt-x4-cross-signed.pem
-
-lets-encrypt-r3-cross-signed.pem:
-	wget https://letsencrypt.org/certs/lets-encrypt-r3-cross-signed.pem
-
-lets-encrypt-r4-cross-signed.pem:
-	wget https://letsencrypt.org/certs/lets-encrypt-r4-cross-signed.pem
+lets-encrypt-%.pem:
+	wget https://letsencrypt.org/certs/$@
 
 # Generate the account key
 account_key.pem:
@@ -53,7 +44,7 @@ account_key.pem:
 	acme-tiny --account-key account_key.pem --csr $*/csr.pem --acme-dir $(ACMEDIR) > $@ || rm $@
 
 # Join signed certificate and intermediate certificates to full chain
-%/fullchain.pem: %/certificate.pem lets-encrypt-r3-cross-signed.pem
+%/fullchain.pem: %/certificate.pem lets-encrypt-r3.pem
 	cat $^ > $@ || rm $@
 
 # Find certificates older than 30 days (-mtime +30) and mark them to renew
