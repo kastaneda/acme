@@ -17,7 +17,7 @@ DOMAIN_FULLCHAINS = $(patsubst %,%/fullchain.pem,$(DOMAINS))
 
 # Main target: sign/renew domain certificates and do everything else
 # If some cerificates is older than their CSRs, then it will be renewed
-all: $(DOMAIN_CERTIFICATES) $(DOMAIN_FULLCHAINS) lets-encrypt-r3-cross-signed.pem
+all: $(DOMAIN_CERTIFICATES) $(DOMAIN_FULLCHAINS) lets-encrypt-r3.pem
 .PHONY: all
 
 # Download Let's Encrypt intermediate certificates
