@@ -15,15 +15,26 @@ ACMEDIR = /var/www/acme-challenge/
 DOMAIN_CERTIFICATES = $(patsubst %,%/certificate.pem,$(DOMAINS))
 DOMAIN_FULLCHAINS = $(patsubst %,%/fullchain.pem,$(DOMAINS))
 
+# https://letsencrypt.org/certificates/
+CERT_CHAIN = lets-encrypt-r10.pem
+
 # Main target: sign/renew domain certificates and do everything else
 # If some cerificates is older than their CSRs, then it will be renewed
-all: $(DOMAIN_CERTIFICATES) $(DOMAIN_FULLCHAINS) lets-encrypt-r3.pem
+all: $(DOMAIN_CERTIFICATES) $(DOMAIN_FULLCHAINS) $(CERT_CHAIN)
 .PHONY: all
 
 # Download Let's Encrypt intermediate certificates
 # See https://letsencrypt.org/certificates/
+lets-encrypt-r10.pem:
+	wget https://letsencrypt.org/certs/2024/r10.pem -O $@
+
+lets-encrypt-r11.pem:
+	wget https://letsencrypt.org/certs/2024/r11.pem -O $@
 
 lets-encrypt-%.pem:
+	wget https://letsencrypt.org/certs/$@
+
+isrgrootx1.pem:
 	wget https://letsencrypt.org/certs/$@
 
 # Generate the account key
@@ -44,7 +55,7 @@ account_key.pem:
 	acme-tiny --account-key account_key.pem --csr $*/csr.pem --acme-dir $(ACMEDIR) > $@ || rm $@
 
 # Join signed certificate and intermediate certificates to full chain
-%/fullchain.pem: %/certificate.pem lets-encrypt-r3.pem
+%/fullchain.pem: %/certificate.pem $(CERT_CHAIN)
 	cat $^ > $@ || rm $@
 
 # Find certificates older than 30 days (-mtime +30) and mark them to renew
